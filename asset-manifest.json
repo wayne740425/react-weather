@@ -1,19 +1,20 @@
 {
   "files": {
     "main.css": "/react-weather/static/css/main.a6e88339.css",
-    "main.js": "/react-weather/static/js/main.6b8b80aa.js",
+    "main.js": "/react-weather/static/js/main.c848e217.js",
+    "service-worker.js": "/react-weather/service-worker.js",
     "static/media/day-cloudy.svg": "/react-weather/static/media/day-cloudy.005047eeadbc034a7bfeedd9ffd99a0f.svg",
     "static/media/cog.svg": "/react-weather/static/media/cog.64eda1d34cd3fad660675c3d6e683a16.svg",
     "static/media/rain.svg": "/react-weather/static/media/rain.8e10718e150267e9dc74f9cde4f669ea.svg",
     "static/media/refresh.svg": "/react-weather/static/media/refresh.e352fc8bae35a5d76241e0bd9ec1d4c5.svg",
     "static/media/airFlow.svg": "/react-weather/static/media/airFlow.93b49bb5f452a711b4783afb6e683672.svg",
-    "static/media/loading.svg": "/react-weather/static/media/loading.f8d56fd58925a1aaab4f80f1d8865c03.svg",
     "index.html": "/react-weather/index.html",
+    "static/media/loading.svg": "/react-weather/static/media/loading.f8d56fd58925a1aaab4f80f1d8865c03.svg",
     "main.a6e88339.css.map": "/react-weather/static/css/main.a6e88339.css.map",
-    "main.6b8b80aa.js.map": "/react-weather/static/js/main.6b8b80aa.js.map"
+    "main.c848e217.js.map": "/react-weather/static/js/main.c848e217.js.map"
   },
   "entrypoints": [
     "static/css/main.a6e88339.css",
-    "static/js/main.6b8b80aa.js"
+    "static/js/main.c848e217.js"
   ]
 }
