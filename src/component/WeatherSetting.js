@@ -1,6 +1,7 @@
 import { useState } from "react";
 import styled from "@emotion/styled";
 import Page from "../Page";
+import { useNavigate } from "react-router-dom";
 
 const WeatherSettingWrapper = styled.div`
   position: relative;
@@ -89,16 +90,17 @@ const Save = styled.button`
 `;
 
 const WeatherSetting = (props) => {
-  const { currentLocation, setCurrentPage, setCurrentLocation } = props;
+  const navigate = useNavigate()
+  const { currentLocation, setCurrentLocation } = props;
   const [lat, setLat] = useState(currentLocation.lat);
   const [lng, setLng] = useState(currentLocation.lng);
 
   const handleSave = () => {
     let isSuccess = true;
-    if (lat < -180 || lat > 180) {
+    if (lng < -180 || lng > 180) {
       isSuccess = false;
     }
-    if (lng < -90 || lng > 90) {
+    if (lat < -90 || lat > 90) {
       isSuccess = false;
     }
     if (isSuccess) {
@@ -106,7 +108,7 @@ const WeatherSetting = (props) => {
         lat: lat,
         lng: lng,
       });
-      setCurrentPage(Page.WeatherCard);
+      navigate("/")
     } else {
       alert(`儲存失敗：您輸入數值並非在有效範圍`);
     }
@@ -147,9 +149,9 @@ const WeatherSetting = (props) => {
           setLng(value);
         }}
       />
-
+      
       <ButtonGroup>
-        <Back onClick={() => setCurrentPage(Page.WeatherCard)}>返回</Back>
+        <Back onClick={() => navigate("/")}>返回</Back>
         <Save onClick={handleSave}>儲存</Save>
       </ButtonGroup>
     </WeatherSettingWrapper>

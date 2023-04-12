@@ -6,8 +6,9 @@ import { ReactComponent as RainIcon } from "../images/rain.svg";
 import { ReactComponent as RefreshIcon } from "../images/refresh.svg";
 import { ReactComponent as LoadingIcon } from "../images/loading.svg";
 import { ReactComponent as CogIcon } from "../images/cog.svg";
-import useWeatherApi from "../hooks/useWeatherApi";
+import useWeatherApi from "../api/useWeatherApi";
 import Page from "../Page";
+import { useNavigate } from "react-router-dom";
 
 const WeatherCardWrapper = styled.div`
   position: relative;
@@ -120,12 +121,13 @@ const Setting = styled(CogIcon)`
 `;
 
 const WeatherCard = (props) => {
-  const { currentLocation, setCurrentPage } = props;
+  const { currentLocation } = props;
+  const navigate = useNavigate()
   const [weatherElement, fetchData] = useWeatherApi(currentLocation);
 
   useEffect(() => {
     fetchData();
-  }, [fetchData]);
+  }, []);
 
   const {
     observationTime,
@@ -139,7 +141,7 @@ const WeatherCard = (props) => {
 
   return (
     <WeatherCardWrapper>
-      <Setting onClick={() => setCurrentPage(Page.WeatherSetting)} />
+      <Setting onClick={() => navigate(Page.WeatherSetting)} />
       <Location>{locationName}</Location>
       <Description> {description} </Description>
       <CurrentWeather>

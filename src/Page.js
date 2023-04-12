@@ -1,6 +1,6 @@
 const Page = {
-  WeatherCard: "WeatherCard",
-  WeatherSetting: "WeatherSetting",
+  WeatherCard: "/",
+  WeatherSetting: "/WeatherSetting",
 };
 
 export default Page;

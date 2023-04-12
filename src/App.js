@@ -4,6 +4,7 @@ import { ThemeProvider } from "@emotion/react";
 import WeatherCard from "./component/WeatherCard";
 import WeatherSetting from "./component/WeatherSetting";
 import Page from "./Page";
+import { Routes, Route, Outlet } from "react-router-dom";
 
 const theme = {
   light: {
@@ -34,37 +35,45 @@ const Container = styled.div`
 `;
 
 const App = () => {
-  const storageLat = localStorage.getItem("lat");
-  const storageLng = localStorage.getItem("lng");
+  const storageLat = localStorage.getItem("storageLat");
+  const storageLng = localStorage.getItem("storageLng");
   const [currentTheme, setCurrentTheme] = useState(theme.light);
-  const [currentPage, setCurrentPage] = useState(Page.WeatherCard);
   const [currentLocation, setCurrentLocation] = useState({
-    lat: storageLat || 121.5490878,
-    lng: storageLng || 25.0517899,
+    lat: storageLat || 25.0517899,
+    lng: storageLng || 121.5490878,
   });
 
   useEffect(() => {
-    localStorage.setItem("lat", currentLocation.lat);
-    localStorage.setItem("lng", currentLocation.lng);
+    localStorage.setItem("storageLat", currentLocation.lat);
+    localStorage.setItem("storageLng", currentLocation.lng);
   }, [currentLocation]);
 
   return (
     <ThemeProvider theme={currentTheme}>
-      <Container>
-        {currentPage === Page.WeatherCard && (
-          <WeatherCard
-            currentLocation={currentLocation}
-            setCurrentPage={setCurrentPage}
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <Container>
+              <Outlet />
+            </Container>
+          }
+        >
+          <Route
+            index
+            element={<WeatherCard currentLocation={currentLocation} />}
           />
-        )}
-        {currentPage === Page.WeatherSetting && (
-          <WeatherSetting
-            currentLocation={currentLocation}
-            setCurrentPage={setCurrentPage}
-            setCurrentLocation={setCurrentLocation}
+          <Route
+            path={Page.WeatherSetting}
+            element={
+              <WeatherSetting
+                currentLocation={currentLocation}
+                setCurrentLocation={setCurrentLocation}
+              />
+            }
           />
-        )}
-      </Container>
+        </Route>
+      </Routes>
     </ThemeProvider>
   );
 };
